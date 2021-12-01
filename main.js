@@ -1,37 +1,34 @@
+const titleInput = document.querySelector("#book-title");
+const authorInput = document.querySelector("#author");
+const priorityInput = document.querySelector("#priority");
+const categorySelect = document.querySelector("#category");
+
 const booksTable = document.querySelector("table");
 
-const booksArr = [
-  {
-    title: "tiitle",
-    author: "Michałek",
-    priority: 6,
-    category: "Romance",
-  },
-];
-
-class Book {
-  constructor(title, author, priority, category) {
-    this.title = title;
-    this.author = author;
-    this.priority = priority;
-    this.category = category;
-  }
-}
-
-booksArr.map((obj) => {
+//creating elements for the table
+const addBook = () => {
   const tr = document.createElement("tr");
   const title = document.createElement("td");
-  title.innerText = obj.title;
+  title.innerText = titleInput.value;
 
   const author = document.createElement("td");
-  author.innerText = obj.author;
+  author.innerText = authorInput.value;
 
   const priority = document.createElement("td");
-  priority.innerText = obj.priority;
+  priority.innerText = priorityInput.value;
 
   const category = document.createElement("td");
-  category.innerText = obj.category;
+  category.innerText =
+    categorySelect.options[categorySelect.selectedIndex].text;
 
   tr.append(title, author, priority, category);
   booksTable.append(tr);
-});
+};
+
+const handleSubmitForm = (e) => {
+  e.preventDefault();
+
+  addBook();
+};
+
+document.querySelector("form").addEventListener("submit", handleSubmitForm);
