@@ -5,6 +5,31 @@
           box-sizing: border-box;
 }
 
+.container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .form-section, .container .table-section {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.container form {
+  width: 100%;
+}
+
 .form-wrapper {
   width: 100%;
   max-width: 550px;
@@ -51,5 +76,16 @@
   border: 1px solid blue;
   display: block;
   margin: 15px 0 0 auto;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 15px;
+  font-size: 20px;
+  border: 2px solid gray;
+}
+
+table td {
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

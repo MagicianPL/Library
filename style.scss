@@ -4,6 +4,22 @@
     box-sizing: border-box;
 }
 
+.container {
+    width: 100%;
+    display: flex;
+
+    .form-section, .table-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-self: flex-start;
+    }
+
+    form {
+        width: 100%;
+    }
+}
+
 .form-wrapper {
     width: 100%;
     max-width: 550px;
@@ -45,7 +61,16 @@
         display: block;
         margin: 15px 0 0 auto;
     }
+}
 
-    
+table {
+    border-collapse: separate;
+    border-spacing: 15px;
+    font-size: 20px;
+    border: 2px solid gray;
+
+    td {
+        text-align: center;
+    }
 }
 
