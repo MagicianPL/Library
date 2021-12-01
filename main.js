@@ -3,7 +3,52 @@ const authorInput = document.querySelector("#author");
 const priorityInput = document.querySelector("#priority");
 const categorySelect = document.querySelector("#category");
 
+/* Error paragraphs ******/
+const titleErr = document.querySelector(".title-error");
+const authorErr = document.querySelector(".author-error");
+const priorityErr = document.querySelector(".priority-error");
+const categoryErr = document.querySelector(".category-error");
+/************************ */
+
 const booksTable = document.querySelector("table");
+
+/* Validation functions ****************************************************** */
+const titleIsValid = () => {
+  if (!titleInput.value.trim()) {
+    titleErr.style.display = "block";
+  } else {
+    titleErr.style.display = "none";
+    return true;
+  }
+};
+
+const authorIsValid = () => {
+  if (authorInput.value.trim().length < 3) {
+    authorErr.style.display = "block";
+  } else {
+    authorErr.style.display = "none";
+    return true;
+  }
+};
+
+const priorityIsValid = () => {
+  if (+priorityInput.value < 1 || +priorityInput.value > 5) {
+    priorityErr.style.display = "block";
+  } else {
+    priorityErr.style.display = "none";
+    return true;
+  }
+};
+
+const categoryIsValid = () => {
+  if (!categorySelect.options[categorySelect.selectedIndex].value) {
+    categoryErr.style.display = "block";
+  } else {
+    categoryErr.style.display = "none";
+    return true;
+  }
+};
+/*********************************************************************************** */
 
 //creating elements for the table
 const addBook = () => {
@@ -28,7 +73,26 @@ const addBook = () => {
 const handleSubmitForm = (e) => {
   e.preventDefault();
 
-  addBook();
+  // Inputs validation
+  titleIsValid();
+  authorIsValid();
+  priorityIsValid();
+  categoryIsValid();
+
+  if (
+    titleIsValid() &&
+    authorIsValid() &&
+    priorityIsValid() &&
+    categoryIsValid()
+  ) {
+    addBook();
+    titleInput.value = "";
+    authorInput.value = "";
+    priorityInput.value = "";
+    categorySelect.value = "";
+  } else {
+    console.log("Big fat error");
+  }
 };
 
 document.querySelector("form").addEventListener("submit", handleSubmitForm);
