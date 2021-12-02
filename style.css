@@ -5,11 +5,20 @@
           box-sizing: border-box;
 }
 
+body {
+  background: #F9F7F5;
+}
+
 .container {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 15px;
 }
 
 .container .form-section, .container .table-section {
@@ -36,6 +45,7 @@
   margin: 30px auto;
   padding: 30px 20px;
   border: 1px solid blue;
+  background: white;
   border-radius: 5px;
   font-size: 25px;
 }
@@ -77,6 +87,13 @@
   border: 1px solid blue;
   display: block;
   margin: 15px 0 0 auto;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.form-wrapper button:hover {
+  background: blue;
+  color: white;
 }
 
 table {
