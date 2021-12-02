@@ -27,6 +27,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     padding: 15px;
+    opacity: 0;
+    animation: appearing 1.2s forwards;
+    animation-delay: 0.8s;
 
     .form-section, .table-section {
         flex: 1;
@@ -113,6 +116,12 @@ th, td {
 
     td {
         text-align: center;
+    }
+}
+
+@keyframes appearing {
+    100% {
+        opacity: 1;
     }
 }
 
