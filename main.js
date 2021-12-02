@@ -10,13 +10,55 @@ const priorityErr = document.querySelector(".priority-error");
 const categoryErr = document.querySelector(".category-error");
 /************************ */
 
-const booksTable = document.querySelector("table");
+const bodyTable = document.querySelector("tbody");
 
-/* Checking if tableContent is true in localStorage */
-if (localStorage.getItem("tableContent") !== null) {
-  const tableContent = localStorage.getItem("tableContent");
-  document.querySelector("table").innerHTML = tableContent;
+let booksArr = [];
+
+class Book {
+  constructor(title, author, priority, category) {
+    this.title = title;
+    this.author = author;
+    this.priority = priority;
+    this.category = category;
+  }
 }
+
+/* Displaying books on the table */
+// Iterating through array
+const showBooks = () => {
+  booksArr.forEach((obj) => {
+    const tr = document.createElement("tr");
+
+    const title = document.createElement("td");
+    title.innerText = obj.title;
+
+    const author = document.createElement("td");
+    author.innerText = obj.author;
+
+    const priority = document.createElement("td");
+    priority.innerText = obj.priority;
+
+    const category = document.createElement("td");
+    category.innerText = obj.category;
+
+    tr.append(title, author, priority, category);
+    bodyTable.append(tr);
+  });
+};
+
+const addBook = () => {
+  const bookTitle = titleInput.value;
+  const bookAuthor = authorInput.value;
+  const bookPriority = priorityInput.value;
+  const bookCategory =
+    categorySelect.options[categorySelect.selectedIndex].text;
+
+  //creating new object and pushing to an array
+  const newBook = new Book(bookTitle, bookAuthor, bookPriority, bookCategory);
+  booksArr.push(newBook);
+  bodyTable.innerHTML = "";
+  showBooks();
+};
 
 /* Validation functions ****************************************************** */
 const titleIsValid = () => {
@@ -56,29 +98,8 @@ const categoryIsValid = () => {
 };
 /*********************************************************************************** */
 
-//creating elements for the table
-const addBook = () => {
-  const tr = document.createElement("tr");
-  const title = document.createElement("td");
-  title.innerText = titleInput.value;
-
-  const author = document.createElement("td");
-  author.innerText = authorInput.value;
-
-  const priority = document.createElement("td");
-  priority.innerText = priorityInput.value;
-
-  const category = document.createElement("td");
-  category.innerText =
-    categorySelect.options[categorySelect.selectedIndex].text;
-
-  tr.append(title, author, priority, category);
-  booksTable.append(tr);
-};
-
 localStorageSave = () => {
-  const content = booksTable.innerHTML;
-  localStorage.setItem("tableContent", content);
+  localStorage.setItem("arrayOfBooks", JSON.stringify(booksArr));
 };
 
 const handleSubmitForm = (e) => {
@@ -107,3 +128,12 @@ const handleSubmitForm = (e) => {
 };
 
 document.querySelector("form").addEventListener("submit", handleSubmitForm);
+document.addEventListener("DOMContentLoaded", () => {
+  /* Checking if localStorage has an array */
+  // If it's true - show books
+  if (localStorage.getItem("arrayOfBooks")) {
+    const arrFromStorage = JSON.parse(localStorage.getItem("arrayOfBooks"));
+    booksArr = [...arrFromStorage];
+    showBooks();
+  }
+});
