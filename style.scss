@@ -4,9 +4,17 @@
     box-sizing: border-box;
 }
 
+body {
+    background: #F9F7F5;
+}
+
 .container {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
 
     .form-section, .table-section {
         flex: 1;
@@ -26,6 +34,7 @@
     margin: 30px auto;
     padding: 30px 20px;
     border: 1px solid blue;
+    background: white;
     border-radius: 5px;
     font-size: 25px;
 
@@ -61,6 +70,12 @@
         border: 1px solid blue;
         display: block;
         margin: 15px 0 0 auto;
+        transition: all 0.4s;
+
+        &:hover {
+            background: blue;
+            color: white;
+        }
     }
 }
 
