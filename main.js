@@ -12,6 +12,12 @@ const categoryErr = document.querySelector(".category-error");
 
 const booksTable = document.querySelector("table");
 
+/* Checking if tableContent is true in localStorage */
+if (localStorage.getItem("tableContent") !== null) {
+  const tableContent = localStorage.getItem("tableContent");
+  document.querySelector("table").innerHTML = tableContent;
+}
+
 /* Validation functions ****************************************************** */
 const titleIsValid = () => {
   if (!titleInput.value.trim()) {
@@ -70,6 +76,11 @@ const addBook = () => {
   booksTable.append(tr);
 };
 
+localStorageSave = () => {
+  const content = booksTable.innerHTML;
+  localStorage.setItem("tableContent", content);
+};
+
 const handleSubmitForm = (e) => {
   e.preventDefault();
 
@@ -86,12 +97,12 @@ const handleSubmitForm = (e) => {
     categoryIsValid()
   ) {
     addBook();
+    //saving data on local storage
+    localStorageSave();
     titleInput.value = "";
     authorInput.value = "";
     priorityInput.value = "";
     categorySelect.value = "";
-  } else {
-    console.log("Big fat error");
   }
 };
 
