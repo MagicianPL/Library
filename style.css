@@ -7,6 +7,18 @@
 
 body {
   background: #F9F7F5;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/books.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: -1;
 }
 
 .container {
@@ -98,9 +110,20 @@ body {
 
 table {
   border-collapse: separate;
-  border-spacing: 15px;
+  border-spacing: 0;
   font-size: 20px;
   border: 2px solid gray;
+  background: white;
+  -webkit-box-shadow: 1px 3px 22px -9px #42445a;
+  box-shadow: 1px 3px 22px -9px #42445a;
+}
+
+table th, table td {
+  padding: 15px;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: lightgray;
 }
 
 table td {

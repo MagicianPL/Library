@@ -6,6 +6,18 @@
 
 body {
     background: #F9F7F5;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("./assets/books.jpg");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
+        z-index: -1;
+    }
 }
 
 .container {
@@ -81,9 +93,23 @@ body {
 
 table {
     border-collapse: separate;
-    border-spacing: 15px;
+    border-spacing: 0;
     font-size: 20px;
     border: 2px solid gray;
+    background: white;
+    -webkit-box-shadow: 1px 3px 22px -9px rgba(66, 68, 90, 1);
+-moz-box-shadow: 1px 3px 22px -9px rgba(66, 68, 90, 1);
+box-shadow: 1px 3px 22px -9px rgba(66, 68, 90, 1);
+
+th, td {
+    padding: 15px;
+}
+
+    tbody {
+        tr:nth-child(odd) {
+            background-color: lightgray;
+        }
+    }
 
     td {
         text-align: center;
